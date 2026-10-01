@@ -58,17 +58,14 @@
     .hearts {
       position: fixed;
       inset: 0;
-
       overflow: hidden;
       pointer-events: none;
-
       z-index: 1;
     }
 
     .heart {
       position: absolute;
       bottom: -70px;
-
       opacity: 0;
 
       animation-name: flyHeart;
@@ -84,7 +81,6 @@
           translate3d(0, 0, 0)
           rotate(0deg)
           scale(0.5);
-
         opacity: 0;
       }
 
@@ -111,7 +107,6 @@
           translate3d(22px, -120svh, 0)
           rotate(22deg)
           scale(1.25);
-
         opacity: 0;
       }
     }
@@ -593,20 +588,32 @@
     }
 
     /* =====================================================
-       HUG
+       EXTRA WISHES
     ===================================================== */
 
-    .hug-card {
+    .extra-options {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
       margin-top: 24px;
     }
 
-    .hug-checkbox {
+    .extra-option {
+      position: relative;
+    }
+
+    .extra-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .extra-label {
       display: flex;
       align-items: center;
-
       gap: 13px;
 
-      padding: 19px;
+      padding: 18px;
 
       background: white;
 
@@ -621,20 +628,51 @@
         rgba(65, 25, 45, 0.05);
 
       cursor: pointer;
+
+      transition:
+        transform 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
     }
 
-    .hug-checkbox input {
-      width: 23px;
-      height: 23px;
+    .extra-check {
+      width: 24px;
+      height: 24px;
 
-      flex-shrink: 0;
+      flex: 0 0 auto;
 
-      accent-color: #ff4d90;
+      border:
+        2px solid
+        rgba(43, 28, 37, 0.17);
+
+      border-radius: 7px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 15px;
+
+      background: white;
     }
 
-    .hug-text {
+    .extra-text {
       font-size: 16px;
       font-weight: 750;
+    }
+
+    .extra-option input:checked + .extra-label {
+      border-color: #ff4d90;
+      background: #fff0f6;
+      transform: translateY(-2px);
+    }
+
+    .extra-option input:checked
+      + .extra-label
+      .extra-check {
+      background: #ff4d90;
+      color: white;
+      border-color: #ff4d90;
     }
 
     /* =====================================================
@@ -734,8 +772,6 @@
       text-align: center;
     }
 
-    /* ФОТО ПРИ НАЖАТИИ НЕТ */
-
     .no-photo {
       width: 150px;
       height: 150px;
@@ -777,11 +813,8 @@
 
     .final-card {
       width: 100%;
-
       text-align: center;
     }
-
-    /* ФОТО / GIF В ФИНАЛЕ */
 
     .final-photo {
       width: 180px;
@@ -866,7 +899,6 @@
 
     .summary-value {
       font-size: 16px;
-
       font-weight: 750;
     }
 
@@ -907,7 +939,6 @@
       }
 
     }
-
   </style>
 </head>
 
@@ -956,7 +987,7 @@
         </button>
 
 
-        <!-- 20 КНОПОК НЕТ -->
+        <!-- 20 НЕТ -->
 
         <button class="no-button n1">НЕТ</button>
         <button class="no-button n2">НЕТ</button>
@@ -987,7 +1018,7 @@
 
 
   <!-- =====================================================
-       FORM OVERLAY
+       FORM
   ===================================================== -->
 
   <section
@@ -1011,11 +1042,9 @@
           Шаг 1 из 3
         </div>
 
-
         <h2 class="step-title">
           Когда тебе удобно?
         </h2>
-
 
         <p class="step-description">
           Конечно же в субботу ❤️
@@ -1107,11 +1136,9 @@
           Шаг 2 из 3
         </div>
 
-
         <h2 class="step-title">
           Что бы тебе хотелось?
         </h2>
-
 
         <p class="step-description">
           Выбирай, что тебе больше нравится ❤️
@@ -1341,31 +1368,74 @@
           Шаг 3 из 3
         </div>
 
-
         <h2 class="step-title">
           Дополнительные пожелания
         </h2>
 
-
         <p class="step-description">
-          Тут есть одно очень важное пожелание...
+          Тут есть кое-что очень важное...
         </p>
 
 
-        <div class="hug-card">
+        <!-- TWO CHECKBOXES -->
 
-          <label class="hug-checkbox">
+        <div class="extra-options">
+
+
+          <!-- ОБНИМАШКИ -->
+
+          <div class="extra-option">
 
             <input
               type="checkbox"
               id="hugs"
+              value="Обнимашки 🤗"
             />
 
-            <span class="hug-text">
-              Обнимашки 🤗
-            </span>
+            <label
+              class="extra-label"
+              for="hugs"
+            >
 
-          </label>
+              <span class="extra-check">
+                ✓
+              </span>
+
+              <span class="extra-text">
+                Обнимашки 🤗
+              </span>
+
+            </label>
+
+          </div>
+
+
+          <!-- Пошел нахуй -->
+
+          <div class="extra-option">
+
+            <input
+              type="checkbox"
+              id="goAway"
+              value="Пошел нахуй"
+            />
+
+            <label
+              class="extra-label"
+              for="goAway"
+            >
+
+              <span class="extra-check">
+                ✓
+              </span>
+
+              <span class="extra-text">
+                Пошел нахуй
+              </span>
+
+            </label>
+
+          </div>
 
         </div>
 
@@ -1411,11 +1481,7 @@
 
 
           <!--
-            ЗДЕСЬ ПОТОМ ПОСТАВИШЬ
-            ССЫЛКУ НА СВОЮ КАРТИНКУ ИЛИ GIF
-
-            Например:
-            src="https://i.imgur.com/xxxxx.gif"
+            ВСТАВЬ СЮДА СВОЙ GIF ИЛИ ФОТО
           -->
 
           <img
@@ -1431,7 +1497,7 @@
 
 
           <p class="final-text">
-            Тогда всё решено ❤️
+            Ыыы ❤️
           </p>
 
 
@@ -1483,12 +1549,13 @@
             <div class="summary-row">
 
               <div class="summary-label">
-                Дополнительно
+                Дополнительные пожелания
               </div>
 
-              <div class="summary-value">
-                Обнимашки 🤗
-              </div>
+              <div
+                class="summary-value"
+                id="summaryExtra"
+              ></div>
 
             </div>
 
@@ -1516,11 +1583,7 @@
 
 
       <!--
-        ЗДЕСЬ ПОТОМ ПОСТАВИШЬ
-        ССЫЛКУ НА ФОТО
-
-        Например:
-        src="https://i.imgur.com/xxxxx.jpg"
+        ВСТАВЬ СЮДА ФОТО ДЛЯ "ОЙ ВСЁ"
       -->
 
       <img
@@ -1630,7 +1693,9 @@
         `${delay}s`;
 
 
-      hearts.appendChild(heart);
+      hearts.appendChild(
+        heart
+      );
 
 
       setTimeout(() => {
@@ -1732,6 +1797,12 @@
     const hugs =
       document.getElementById(
         "hugs"
+      );
+
+
+    const goAway =
+      document.getElementById(
+        "goAway"
       );
 
 
@@ -1983,14 +2054,28 @@
        STEP 3
     ===================================================== */
 
+    function updateFinishButton() {
+
+      const somethingChecked =
+        hugs.checked ||
+        goAway.checked;
+
+
+      finishButton.disabled =
+        !somethingChecked;
+
+    }
+
+
     hugs.addEventListener(
       "change",
-      () => {
+      updateFinishButton
+    );
 
-        finishButton.disabled =
-          !hugs.checked;
 
-      }
+    goAway.addEventListener(
+      "change",
+      updateFinishButton
     );
 
 
@@ -2048,6 +2133,41 @@
         }
 
 
+        /* =================================================
+           EXTRA CHOICES
+        ================================================= */
+
+        const extraChoices = [];
+
+
+        if (hugs.checked) {
+
+          extraChoices.push(
+            "Обнимашки 🤗"
+          );
+
+        }
+
+
+        if (goAway.checked) {
+
+          extraChoices.push(
+            "Пошел нахуй"
+          );
+
+        }
+
+
+        const extraText =
+          extraChoices.join(
+            ", "
+          );
+
+
+        /* =================================================
+           DATE
+        ================================================= */
+
         const selectedDate =
           new Date(
             dateInput.value +
@@ -2067,12 +2187,13 @@
 
 
         /* =================================================
-           DATA
-        ================================================== */
+           DATA FOR FORMSPREE
+        ================================================= */
 
         const answer = {
 
-          name: "Соф",
+          name:
+            "Соф",
 
           date:
             formattedDate,
@@ -2084,14 +2205,14 @@
             walkChoice,
 
           extra:
-            "Обнимашки 🤗"
+            extraText
 
         };
 
 
         /* =================================================
-           BUTTON STATE
-        ================================================== */
+           BUTTON
+        ================================================= */
 
         finishButton.disabled =
           true;
@@ -2108,7 +2229,7 @@
 
         /* =================================================
            SEND
-        ================================================== */
+        ================================================= */
 
         try {
 
@@ -2148,9 +2269,9 @@
           }
 
 
-          /* ===============================================
-             SHOW FINAL
-          =============================================== */
+          /* =================================================
+             FINAL SUMMARY
+          ================================================= */
 
           document.getElementById(
             "summaryDate"
@@ -2170,6 +2291,16 @@
             walkChoice;
 
 
+          document.getElementById(
+            "summaryExtra"
+          ).textContent =
+            extraText;
+
+
+          /* =================================================
+             SHOW FINAL
+          ================================================= */
+
           step3.classList.remove(
             "active"
           );
@@ -2186,9 +2317,9 @@
           );
 
 
-          /* ===============================================
+          /* =================================================
              FINAL HEART EXPLOSION
-          =============================================== */
+          ================================================= */
 
           for (
             let i = 0;
