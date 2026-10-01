@@ -12,6 +12,7 @@
   <style>
     * {
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html,
@@ -19,91 +20,119 @@
       margin: 0;
       width: 100%;
       min-height: 100%;
-      overflow: hidden;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #fff7fb;
-      color: #2b1b22;
     }
 
     body {
       min-height: 100svh;
+      overflow-x: hidden;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+      color: #2b1c25;
+      background:
+        radial-gradient(circle at 50% 20%, #fff 0%, #fff8fb 40%, #ffeef5 100%);
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
     }
 
     .page {
       position: relative;
       width: 100%;
       min-height: 100svh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
       overflow: hidden;
     }
 
-    /* Мягкий фон */
-    .background-glow {
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      background: rgba(255, 120, 170, 0.12);
-      filter: blur(60px);
-      pointer-events: none;
-    }
+    /* =========================
+       HEARTS
+    ========================= */
 
-    /* Сердечки */
     .hearts {
-      position: absolute;
+      position: fixed;
       inset: 0;
       overflow: hidden;
       pointer-events: none;
-      z-index: 5;
+      z-index: 1;
     }
 
     .heart {
       position: absolute;
-      bottom: -50px;
-      font-size: 24px;
+      bottom: -60px;
       opacity: 0;
-      animation: flyUp linear forwards;
+      animation-name: flyHeart;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
+      user-select: none;
     }
 
-    @keyframes flyUp {
+    @keyframes flyHeart {
       0% {
-        transform: translateY(0) rotate(0deg) scale(0.7);
+        transform:
+          translate3d(0, 0, 0)
+          rotate(0deg)
+          scale(0.5);
         opacity: 0;
       }
 
-      10% {
+      8% {
         opacity: 1;
       }
 
-      80% {
+      45% {
+        transform:
+          translate3d(12px, -45svh, 0)
+          rotate(12deg)
+          scale(1);
+        opacity: 1;
+      }
+
+      75% {
+        transform:
+          translate3d(-15px, -80svh, 0)
+          rotate(-12deg)
+          scale(1.1);
         opacity: 0.9;
       }
 
       100% {
         transform:
-          translateY(-115svh)
-          rotate(25deg)
-          scale(1.2);
+          translate3d(20px, -120svh, 0)
+          rotate(22deg)
+          scale(1.25);
         opacity: 0;
       }
     }
 
-    /* Основной блок */
-    .card {
+    /* =========================
+       INTRO
+    ========================= */
+
+    .intro {
       position: relative;
-      z-index: 10;
-      width: min(100%, 420px);
-      text-align: center;
-      opacity: 0;
-      transform: translateY(18px) scale(0.97);
-      animation: showCard 0.8s ease forwards;
-      animation-delay: 1.5s;
+      z-index: 5;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
     }
 
-    @keyframes showCard {
+    .intro-card {
+      width: min(100%, 450px);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(24px) scale(0.96);
+      animation: introIn 0.9s ease forwards;
+      animation-delay: 1.2s;
+    }
+
+    @keyframes introIn {
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -112,171 +141,504 @@
 
     .small-text {
       margin-bottom: 14px;
-      font-size: 15px;
-      letter-spacing: 0.08em;
+      font-size: 14px;
       text-transform: uppercase;
-      opacity: 0.55;
+      letter-spacing: 0.12em;
+      opacity: 0.5;
     }
 
-    h1 {
+    .main-title {
       margin: 0;
-      font-size: clamp(32px, 8vw, 48px);
-      line-height: 1.08;
-      font-weight: 750;
-      letter-spacing: -0.03em;
+      font-size: clamp(38px, 11vw, 60px);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      font-weight: 850;
     }
 
-    /* Контейнер с кнопками */
-    .buttons-area {
+    .question-area {
       position: relative;
-      width: 290px;
-      height: 290px;
-      margin: 34px auto 0;
+      width: min(90vw, 330px);
+      height: min(90vw, 330px);
+      margin: 28px auto 0;
     }
 
-    /* ДА */
+    /* =========================
+       YES
+    ========================= */
+
     .yes-button {
       position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      width: 118px;
-      height: 118px;
-      border: none;
+      width: min(34vw, 125px);
+      height: min(34vw, 125px);
+      min-width: 112px;
+      min-height: 112px;
+
+      border: 0;
       border-radius: 50%;
-      background: #ff4f91;
-      color: white;
-      font-size: 27px;
-      font-weight: 800;
+      background: linear-gradient(145deg, #ff5e9c, #ff367f);
+      color: #fff;
+      font-size: clamp(24px, 7vw, 31px);
+      font-weight: 850;
+
       box-shadow:
-        0 14px 35px rgba(255, 79, 145, 0.28),
-        0 0 0 8px rgba(255, 79, 145, 0.08);
+        0 16px 40px rgba(255, 54, 127, 0.28),
+        0 0 0 8px rgba(255, 92, 156, 0.08);
+
       cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
       transition:
         transform 0.18s ease,
         box-shadow 0.18s ease;
     }
 
     .yes-button:active {
-      transform: translate(-50%, -50%) scale(0.94);
+      transform: translate(-50%, -50%) scale(0.93);
     }
 
-    /* НЕТ */
+    /* =========================
+       20 NO BUTTONS
+    ========================= */
+
     .no-button {
       position: absolute;
-      width: 62px;
-      height: 42px;
-      border: 1px solid rgba(43, 27, 34, 0.1);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      color: rgba(43, 27, 34, 0.62);
-      font-size: 13px;
-      font-weight: 700;
+      width: 58px;
+      height: 38px;
+      border: 1px solid rgba(43, 28, 37, 0.09);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.82);
+      color: rgba(43, 28, 37, 0.58);
+      font-size: 12px;
+      font-weight: 750;
+      box-shadow: 0 6px 18px rgba(65, 25, 45, 0.06);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       cursor: pointer;
-      box-shadow: 0 5px 18px rgba(65, 25, 45, 0.06);
-      -webkit-tap-highlight-color: transparent;
       transition: transform 0.15s ease;
     }
 
     .no-button:active {
-      transform: scale(0.9);
+      transform: scale(0.88);
     }
 
-    /* Расстановка НЕТ вокруг ДА */
-    .no-1 {
-      left: 50%;
-      top: 0;
-      transform: translateX(-50%);
-    }
+    .n1  { left: 50%; top: 0; transform: translateX(-50%); }
+    .n2  { right: 28px; top: 12px; }
+    .n3  { right: 0; top: 54px; }
+    .n4  { right: -6px; top: 50%; transform: translateY(-50%); }
+    .n5  { right: 4px; bottom: 52px; }
+    .n6  { right: 34px; bottom: 9px; }
+    .n7  { left: 50%; bottom: -2px; transform: translateX(-50%); }
+    .n8  { left: 35px; bottom: 9px; }
+    .n9  { left: 5px; bottom: 50px; }
+    .n10 { left: -7px; top: 50%; transform: translateY(-50%); }
+    .n11 { left: 4px; top: 55px; }
+    .n12 { left: 34px; top: 12px; }
 
-    .no-2 {
-      right: 5px;
-      top: 62px;
-    }
+    .n13 { left: 16%; top: 24%; }
+    .n14 { left: 3%; top: 35%; }
+    .n15 { right: 16%; top: 24%; }
+    .n16 { right: 3%; top: 35%; }
+    .n17 { left: 16%; bottom: 24%; }
+    .n18 { left: 3%; bottom: 35%; }
+    .n19 { right: 16%; bottom: 24%; }
+    .n20 { right: 3%; bottom: 35%; }
 
-    .no-3 {
-      right: 5px;
-      bottom: 45px;
-    }
+    /* =========================
+       OVERLAY
+    ========================= */
 
-    .no-4 {
-      left: 50%;
-      bottom: 0;
-      transform: translateX(-50%);
-    }
-
-    .no-5 {
-      left: 5px;
-      bottom: 45px;
-    }
-
-    .no-6 {
-      left: 5px;
-      top: 62px;
-    }
-
-    /* Сообщение после НЕТ */
-    .message {
+    .overlay {
       position: fixed;
       inset: 0;
-      z-index: 30;
+      z-index: 20;
+      padding:
+        max(22px, env(safe-area-inset-top))
+        20px
+        max(22px, env(safe-area-inset-bottom));
+
+      background:
+        linear-gradient(
+          180deg,
+          #fff8fb 0%,
+          #fff3f7 100%
+        );
+
+      overflow-y: auto;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+    }
+
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .overlay-content {
+      width: min(100%, 520px);
+      margin: 0 auto;
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 0;
+    }
+
+    .step {
+      display: none;
+      width: 100%;
+      animation: stepIn 0.45s ease;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    @keyframes stepIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .step-number {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.45;
+      margin-bottom: 10px;
+    }
+
+    .step-title {
+      margin: 0;
+      font-size: clamp(30px, 8vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      font-weight: 850;
+    }
+
+    .step-description {
+      margin: 12px 0 22px;
+      font-size: 16px;
+      line-height: 1.45;
+      opacity: 0.58;
+    }
+
+    /* =========================
+       DATE / TIME
+    ========================= */
+
+    .field-group {
+      margin-bottom: 18px;
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 750;
+      opacity: 0.65;
+    }
+
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(43, 28, 37, 0.1);
+      border-radius: 18px;
+      background: #fff;
+      color: #2b1c25;
+      outline: none;
+      box-shadow: 0 8px 25px rgba(65, 25, 45, 0.05);
+    }
+
+    input[type="date"],
+    select {
+      min-height: 58px;
+      padding: 0 16px;
+      font-size: 17px;
+    }
+
+    textarea {
+      min-height: 120px;
+      padding: 15px 16px;
+      resize: vertical;
+      font-size: 16px;
+    }
+
+    /* =========================
+       OPTIONS
+    ========================= */
+
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+      margin-top: 20px;
+    }
+
+    .option {
+      position: relative;
+    }
+
+    .option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .option-label {
+      min-height: 112px;
+      padding: 16px 10px;
+      border: 1.5px solid rgba(43, 28, 37, 0.08);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.82);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      text-align: center;
+      cursor: pointer;
+      transition:
+        transform 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
+    }
+
+    .option-icon {
+      font-size: 30px;
+    }
+
+    .option-text {
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1.15;
+    }
+
+    .option input:checked + .option-label {
+      border-color: #ff4d90;
+      background: #fff0f6;
+      transform: translateY(-2px);
+    }
+
+    .custom-option {
+      display: none;
+      margin-top: 14px;
+    }
+
+    .custom-option.show {
+      display: block;
+      animation: stepIn 0.3s ease;
+    }
+
+    /* =========================
+       HUG CHECKBOX
+    ========================= */
+
+    .hug-card {
+      margin-top: 24px;
+    }
+
+    .hug-checkbox {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 19px;
+      border-radius: 20px;
+      background: #fff;
+      border: 1.5px solid rgba(43, 28, 37, 0.09);
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(65, 25, 45, 0.05);
+    }
+
+    .hug-checkbox input {
+      width: 23px;
+      height: 23px;
+      accent-color: #ff4d90;
+      flex: 0 0 auto;
+    }
+
+    .hug-text {
+      font-size: 16px;
+      font-weight: 750;
+    }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .continue-button {
+      width: 100%;
+      min-height: 58px;
+      margin-top: 22px;
+      border: 0;
+      border-radius: 18px;
+      background: #ff4d90;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(255, 77, 144, 0.24);
+      transition:
+        opacity 0.2s ease,
+        transform 0.15s ease;
+    }
+
+    .continue-button:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .continue-button:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    .back-button {
+      width: 100%;
+      min-height: 45px;
+      margin-top: 9px;
+      border: 0;
+      background: transparent;
+      color: rgba(43, 28, 37, 0.45);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* =========================
+       ОЙ ВСЁ
+    ========================= */
+
+    .no-message {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
-      background: rgba(255, 247, 251, 0.88);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(255, 247, 251, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
 
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.35s ease;
+
+      transition: opacity 0.3s ease;
     }
 
-    .message.show {
+    .no-message.show {
       opacity: 1;
       visibility: visible;
     }
 
-    .message-box {
+    .no-message-box {
       text-align: center;
-      transform: scale(0.88);
-      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
     }
 
-    .message.show .message-box {
-      transform: scale(1);
+    .no-emoji {
+      font-size: 70px;
+      margin-bottom: 14px;
     }
 
-    .message-emoji {
-      font-size: 64px;
-      margin-bottom: 12px;
-    }
-
-    .message-title {
-      font-size: 45px;
+    .no-title {
+      font-size: 50px;
       line-height: 1;
-      font-weight: 850;
-      letter-spacing: -0.04em;
+      font-weight: 900;
+      letter-spacing: -0.05em;
     }
 
-    .message-subtitle {
-      margin-top: 12px;
+    .no-subtitle {
+      margin-top: 10px;
       font-size: 17px;
-      opacity: 0.55;
+      opacity: 0.5;
     }
 
-    @media (max-width: 360px) {
-      .buttons-area {
-        transform: scale(0.9);
-        margin-top: 22px;
+    /* =========================
+       FINAL
+    ========================= */
+
+    .final-card {
+      text-align: center;
+    }
+
+    .final-emoji {
+      font-size: 70px;
+      margin-bottom: 16px;
+    }
+
+    .final-title {
+      margin: 0;
+      font-size: clamp(38px, 10vw, 58px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+    }
+
+    .final-text {
+      margin-top: 14px;
+      font-size: 17px;
+      line-height: 1.5;
+      opacity: 0.62;
+    }
+
+    .summary {
+      margin-top: 24px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.9);
+      text-align: left;
+      box-shadow: 0 10px 30px rgba(65, 25, 45, 0.06);
+    }
+
+    .summary-row {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(43,28,37,0.07);
+    }
+
+    .summary-row:last-child {
+      border-bottom: none;
+    }
+
+    .summary-label {
+      font-size: 12px;
+      opacity: 0.45;
+      margin-bottom: 4px;
+    }
+
+    .summary-value {
+      font-size: 16px;
+      font-weight: 750;
+    }
+
+    @media (max-width: 370px) {
+      .question-area {
+        transform: scale(0.88);
+        transform-origin: center;
       }
 
-      h1 {
-        font-size: 31px;
+      .options {
+        gap: 8px;
+      }
+
+      .option-label {
+        min-height: 102px;
+        padding: 12px 7px;
       }
     }
   </style>
@@ -284,129 +646,765 @@
 
 <body>
 
-  <main class="page">
-
-    <div class="background-glow"></div>
+  <div class="page">
 
     <!-- Сердечки -->
     <div class="hearts" id="hearts"></div>
 
-    <!-- Основное приглашение -->
-    <section class="card">
+    <!-- =========================
+         ГЛАВНЫЙ ЭКРАН
+    ========================== -->
 
-      <div class="small-text">
-        У меня к тебе вопрос...
-      </div>
+    <main class="intro">
 
-      <h1>
-        Пойдёшь<br />
-        гулять?
-      </h1>
+      <section class="intro-card">
 
-      <div class="buttons-area">
+        <div class="small-text">
+          У меня к тебе вопрос...
+        </div>
 
-        <button class="yes-button" id="yesButton">
-          ДА ❤️
+        <h1 class="main-title">
+          Пойдёшь<br />
+          гулять?
+        </h1>
+
+        <div class="question-area">
+
+          <button class="yes-button" id="yesButton">
+            ДА ❤️
+          </button>
+
+          <!-- 20 НЕТ -->
+          <button class="no-button n1">НЕТ</button>
+          <button class="no-button n2">НЕТ</button>
+          <button class="no-button n3">НЕТ</button>
+          <button class="no-button n4">НЕТ</button>
+          <button class="no-button n5">НЕТ</button>
+          <button class="no-button n6">НЕТ</button>
+          <button class="no-button n7">НЕТ</button>
+          <button class="no-button n8">НЕТ</button>
+          <button class="no-button n9">НЕТ</button>
+          <button class="no-button n10">НЕТ</button>
+          <button class="no-button n11">НЕТ</button>
+          <button class="no-button n12">НЕТ</button>
+          <button class="no-button n13">НЕТ</button>
+          <button class="no-button n14">НЕТ</button>
+          <button class="no-button n15">НЕТ</button>
+          <button class="no-button n16">НЕТ</button>
+          <button class="no-button n17">НЕТ</button>
+          <button class="no-button n18">НЕТ</button>
+          <button class="no-button n19">НЕТ</button>
+          <button class="no-button n20">НЕТ</button>
+
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+
+  <!-- =========================
+       ФОРМА
+  ========================== -->
+
+  <section class="overlay" id="formOverlay">
+
+    <div class="overlay-content">
+
+      <!-- STEP 1 -->
+      <div class="step active" id="step1">
+
+        <div class="step-number">
+          Шаг 1 из 3
+        </div>
+
+        <h2 class="step-title">
+          Когда тебе удобно?
+        </h2>
+
+        <p class="step-description">
+          Выбери дату и час, а дальше разберёмся ❤️
+        </p>
+
+        <div class="field-group">
+
+          <label class="field-label" for="date">
+            Дата
+          </label>
+
+          <input
+            type="date"
+            id="date"
+            required
+          />
+
+        </div>
+
+        <div class="field-group">
+
+          <label class="field-label" for="hour">
+            Время
+          </label>
+
+          <select id="hour" required>
+
+            <option value="">
+              Выбери час
+            </option>
+
+            <option value="00:00">00:00</option>
+            <option value="01:00">01:00</option>
+            <option value="02:00">02:00</option>
+            <option value="03:00">03:00</option>
+            <option value="04:00">04:00</option>
+            <option value="05:00">05:00</option>
+            <option value="06:00">06:00</option>
+            <option value="07:00">07:00</option>
+            <option value="08:00">08:00</option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+            <option value="22:00">22:00</option>
+            <option value="23:00">23:00</option>
+
+          </select>
+
+        </div>
+
+        <button
+          class="continue-button"
+          id="step1Next"
+        >
+          Дальше ❤️
         </button>
 
-        <button class="no-button no-1">НЕТ</button>
-        <button class="no-button no-2">НЕТ</button>
-        <button class="no-button no-3">НЕТ</button>
-        <button class="no-button no-4">НЕТ</button>
-        <button class="no-button no-5">НЕТ</button>
-        <button class="no-button no-6">НЕТ</button>
+      </div>
+
+
+      <!-- STEP 2 -->
+      <div class="step" id="step2">
+
+        <div class="step-number">
+          Шаг 2 из 3
+        </div>
+
+        <h2 class="step-title">
+          Что бы тебе хотелось?
+        </h2>
+
+        <p class="step-description">
+          Можно выбрать один вариант.
+        </p>
+
+        <div class="options">
+
+          <div class="option">
+            <input
+              type="radio"
+              name="walk"
+              id="cafe"
+              value="Кафе ☕"
+            />
+            <label class="option-label" for="cafe">
+              <span class="option-icon">☕</span>
+              <span class="option-text">Кафе</span>
+            </label>
+          </div>
+
+          <div class="option">
+            <input
+              type="radio"
+              name="walk"
+              id="quest"
+              value="Квест 🧩"
+            />
+            <label class="option-label" for="quest">
+              <span class="option-icon">🧩</span>
+              <span class="option-text">Квест</span>
+            </label>
+          </div>
+
+          <div class="option">
+            <input
+              type="radio"
+              name="walk"
+              id="friends"
+              value="Встреча с друзьями 👥"
+            />
+            <label class="option-label" for="friends">
+              <span class="option-icon">👥</span>
+              <span class="option-text">Встреча с друзьями</span>
+            </label>
+          </div>
+
+          <div class="option">
+            <input
+              type="radio"
+              name="walk"
+              id="walk"
+              value="Прогулка 🚶"
+            />
+            <label class="option-label" for="walk">
+              <span class="option-icon">🚶</span>
+              <span class="option-text">Прогулка</span>
+            </label>
+          </div>
+
+          <div class="option">
+            <input
+              type="radio"
+              name="walk"
+              id="surprise"
+              value="На твоё усмотрение ✨"
+            />
+            <label class="option-label" for="surprise">
+              <span class="option-icon">✨</span>
+              <span class="option-text">На твоё усмотрение</span>
+            </label>
+          </div>
+
+          <div class="option">
+            <input
+              type="radio"
+              name="walk"
+              id="custom"
+              value="Свой вариант ✍️"
+            />
+            <label class="option-label" for="custom">
+              <span class="option-icon">✍️</span>
+              <span class="option-text">Свой вариант</span>
+            </label>
+          </div>
+
+        </div>
+
+        <div
+          class="custom-option"
+          id="customOption"
+        >
+          <textarea
+            id="customText"
+            placeholder="Напиши, что бы тебе хотелось..."
+          ></textarea>
+        </div>
+
+        <button
+          class="continue-button"
+          id="step2Next"
+        >
+          Дальше ❤️
+        </button>
+
+        <button
+          class="back-button"
+          id="step2Back"
+        >
+          ← Назад
+        </button>
 
       </div>
-    </section>
 
-  </main>
 
-  <!-- Сообщение -->
-  <div class="message" id="message">
+      <!-- STEP 3 -->
+      <div class="step" id="step3">
 
-    <div class="message-box">
+        <div class="step-number">
+          Шаг 3 из 3
+        </div>
 
-      <div class="message-emoji">
+        <h2 class="step-title">
+          Дополнительные пожелания
+        </h2>
+
+        <p class="step-description">
+          Тут есть одно очень важное пожелание...
+        </p>
+
+        <div class="hug-card">
+
+          <label class="hug-checkbox">
+
+            <input
+              type="checkbox"
+              id="hugs"
+            />
+
+            <span class="hug-text">
+              Обнимашки 🤗
+            </span>
+
+          </label>
+
+        </div>
+
+        <button
+          class="continue-button"
+          id="finishButton"
+          disabled
+        >
+          Подтвердить ❤️
+        </button>
+
+        <button
+          class="back-button"
+          id="step3Back"
+        >
+          ← Назад
+        </button>
+
+      </div>
+
+
+      <!-- FINAL -->
+      <div class="step" id="finalStep">
+
+        <div class="final-card">
+
+          <div class="final-emoji">
+            🥰
+          </div>
+
+          <h2 class="final-title">
+            Ура!
+          </h2>
+
+          <p class="final-text">
+            Тогда всё решено ❤️
+          </p>
+
+          <div class="summary">
+
+            <div class="summary-row">
+              <div class="summary-label">
+                Дата
+              </div>
+
+              <div
+                class="summary-value"
+                id="summaryDate"
+              ></div>
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-label">
+                Время
+              </div>
+
+              <div
+                class="summary-value"
+                id="summaryTime"
+              ></div>
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-label">
+                Пожелание
+              </div>
+
+              <div
+                class="summary-value"
+                id="summaryWalk"
+              ></div>
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-label">
+                Дополнительно
+              </div>
+
+              <div class="summary-value">
+                Обнимашки 🤗
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       ОЙ ВСЁ
+  ========================== -->
+
+  <section
+    class="no-message"
+    id="noMessage"
+  >
+
+    <div class="no-message-box">
+
+      <div class="no-emoji">
         😭
       </div>
 
-      <div class="message-title">
+      <div class="no-title">
         Ой всё
       </div>
 
-      <div class="message-subtitle">
+      <div class="no-subtitle">
         Я понял...
       </div>
 
     </div>
 
-  </div>
+  </section>
+
 
   <script>
-    const heartsContainer = document.getElementById("hearts");
-    const message = document.getElementById("message");
-    const yesButton = document.getElementById("yesButton");
+    /* =================================
+       HEARTS
+    ================================= */
 
-    // Сердечки
-    const heartSymbols = ["❤️", "💕", "💗", "💖", "💓"];
+    const hearts = document.getElementById("hearts");
 
-    function createHeart(delay = 0) {
+    const heartSymbols = [
+      "❤️",
+      "💕",
+      "💗",
+      "💖",
+      "💓",
+      "💘",
+      "💝"
+    ];
+
+    function createHeart(delay = 0, extra = false) {
+
       const heart = document.createElement("div");
 
       heart.className = "heart";
-      heart.textContent =
-        heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
 
-      const left = Math.random() * 100;
-      const size = 16 + Math.random() * 22;
-      const duration = 3.5 + Math.random() * 3;
+      heart.textContent =
+        heartSymbols[
+          Math.floor(Math.random() * heartSymbols.length)
+        ];
+
+      const left =
+        Math.random() * 100;
+
+      const size =
+        (extra ? 18 : 14) +
+        Math.random() * (extra ? 30 : 22);
+
+      const duration =
+        3.2 +
+        Math.random() * 3.6;
 
       heart.style.left = `${left}%`;
       heart.style.fontSize = `${size}px`;
       heart.style.animationDuration = `${duration}s`;
       heart.style.animationDelay = `${delay}s`;
 
-      heartsContainer.appendChild(heart);
+      hearts.appendChild(heart);
 
       setTimeout(() => {
         heart.remove();
       }, (duration + delay) * 1000 + 500);
     }
 
-    // Первая волна
-    for (let i = 0; i < 28; i++) {
-      createHeart(Math.random() * 1.8);
+
+    /* =================================
+       ОГРОМНАЯ ПЕРВАЯ ВОЛНА
+    ================================= */
+
+    for (let i = 0; i < 70; i++) {
+      createHeart(
+        Math.random() * 2.8,
+        true
+      );
     }
 
-    // Потом продолжаем слегка пускать сердечки
+    /* Потом сердце продолжает лететь */
+
     setInterval(() => {
-      createHeart();
-    }, 650);
+      createHeart(0, false);
+    }, 350);
 
-    // НЕТ
-    document.querySelectorAll(".no-button").forEach((button) => {
-      button.addEventListener("click", () => {
-        message.classList.add("show");
 
-        // Дополнительные сердечки
-        for (let i = 0; i < 15; i++) {
-          setTimeout(() => createHeart(), i * 80);
-        }
+    /* =================================
+       ELEMENTS
+    ================================= */
+
+    const yesButton =
+      document.getElementById("yesButton");
+
+    const noMessage =
+      document.getElementById("noMessage");
+
+    const formOverlay =
+      document.getElementById("formOverlay");
+
+    const dateInput =
+      document.getElementById("date");
+
+    const hourInput =
+      document.getElementById("hour");
+
+    const step1 =
+      document.getElementById("step1");
+
+    const step2 =
+      document.getElementById("step2");
+
+    const step3 =
+      document.getElementById("step3");
+
+    const finalStep =
+      document.getElementById("finalStep");
+
+
+    /* =================================
+       НЕТ
+    ================================= */
+
+    document
+      .querySelectorAll(".no-button")
+      .forEach((button) => {
+
+        button.addEventListener("click", () => {
+
+          noMessage.classList.add("show");
+
+        });
+
       });
+
+
+    /* =================================
+       ДА
+    ================================= */
+
+    yesButton.addEventListener("click", () => {
+
+      formOverlay.classList.add("show");
+
+      for (let i = 0; i < 45; i++) {
+
+        setTimeout(() => {
+          createHeart(0, true);
+        }, i * 45);
+
+      }
+
     });
 
-    // ДА
-    yesButton.addEventListener("click", () => {
-      message.classList.add("show");
 
-      document.querySelector(".message-emoji").textContent = "🥰";
-      document.querySelector(".message-title").textContent = "Ура!";
-      document.querySelector(".message-subtitle").textContent =
-        "Тогда прогулка состоится ❤️";
+    /* =================================
+       STEP 1
+    ================================= */
 
-      for (let i = 0; i < 35; i++) {
-        setTimeout(() => createHeart(), i * 60);
+    const step1Next =
+      document.getElementById("step1Next");
+
+    step1Next.addEventListener("click", () => {
+
+      if (!dateInput.value) {
+        alert("Выбери дату ❤️");
+        return;
       }
+
+      if (!hourInput.value) {
+        alert("Выбери время ❤️");
+        return;
+      }
+
+      step1.classList.remove("active");
+      step2.classList.add("active");
+
+      window.scrollTo(0, 0);
+
+    });
+
+
+    /* =================================
+       STEP 2
+    ================================= */
+
+    const step2Next =
+      document.getElementById("step2Next");
+
+    const step2Back =
+      document.getElementById("step2Back");
+
+    const customOption =
+      document.getElementById("customOption");
+
+    const customText =
+      document.getElementById("customText");
+
+
+    document
+      .querySelectorAll('input[name="walk"]')
+      .forEach((radio) => {
+
+        radio.addEventListener("change", () => {
+
+          if (radio.value === "Свой вариант ✍️") {
+
+            customOption.classList.add("show");
+
+          } else {
+
+            customOption.classList.remove("show");
+
+          }
+
+        });
+
+      });
+
+
+    step2Next.addEventListener("click", () => {
+
+      const selected =
+        document.querySelector(
+          'input[name="walk"]:checked'
+        );
+
+      if (!selected) {
+        alert("Выбери вариант ❤️");
+        return;
+      }
+
+      if (
+        selected.value === "Свой вариант ✍️" &&
+        !customText.value.trim()
+      ) {
+
+        alert("Напиши свой вариант ❤️");
+        return;
+
+      }
+
+      step2.classList.remove("active");
+      step3.classList.add("active");
+
+      window.scrollTo(0, 0);
+
+    });
+
+
+    step2Back.addEventListener("click", () => {
+
+      step2.classList.remove("active");
+      step1.classList.add("active");
+
+      window.scrollTo(0, 0);
+
+    });
+
+
+    /* =================================
+       STEP 3
+    ================================= */
+
+    const hugs =
+      document.getElementById("hugs");
+
+    const finishButton =
+      document.getElementById("finishButton");
+
+    const step3Back =
+      document.getElementById("step3Back");
+
+
+    hugs.addEventListener("change", () => {
+
+      finishButton.disabled =
+        !hugs.checked;
+
+    });
+
+
+    step3Back.addEventListener("click", () => {
+
+      step3.classList.remove("active");
+      step2.classList.add("active");
+
+      window.scrollTo(0, 0);
+
+    });
+
+
+    /* =================================
+       FINAL
+    ================================= */
+
+    finishButton.addEventListener("click", () => {
+
+      const selected =
+        document.querySelector(
+          'input[name="walk"]:checked'
+        );
+
+      let walkText =
+        selected ? selected.value : "";
+
+      if (
+        selected &&
+        selected.value === "Свой вариант ✍️"
+      ) {
+
+        walkText =
+          "Свой вариант: " +
+          customText.value.trim();
+
+      }
+
+      const date =
+        new Date(
+          dateInput.value + "T00:00:00"
+        );
+
+      const formattedDate =
+        date.toLocaleDateString(
+          "ru-RU",
+          {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          }
+        );
+
+      document.getElementById(
+        "summaryDate"
+      ).textContent = formattedDate;
+
+      document.getElementById(
+        "summaryTime"
+      ).textContent = hourInput.value;
+
+      document.getElementById(
+        "summaryWalk"
+      ).textContent = walkText;
+
+      step3.classList.remove("active");
+      finalStep.classList.add("active");
+
+      window.scrollTo(0, 0);
+
+      for (let i = 0; i < 90; i++) {
+
+        setTimeout(() => {
+          createHeart(0, true);
+        }, i * 35);
+
+      }
+
     });
   </script>
 
