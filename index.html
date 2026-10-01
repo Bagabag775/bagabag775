@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <title>Одно важное предложение ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #fff7fb;
+      color: #2b1b22;
+    }
+
+    body {
+      min-height: 100svh;
+    }
+
+    .page {
+      position: relative;
+      width: 100%;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    /* Мягкий фон */
+    .background-glow {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255, 120, 170, 0.12);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    /* Сердечки */
+    .hearts {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      font-size: 24px;
+      opacity: 0;
+      animation: flyUp linear forwards;
+    }
+
+    @keyframes flyUp {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(0.7);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      80% {
+        opacity: 0.9;
+      }
+
+      100% {
+        transform:
+          translateY(-115svh)
+          rotate(25deg)
+          scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* Основной блок */
+    .card {
+      position: relative;
+      z-index: 10;
+      width: min(100%, 420px);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(18px) scale(0.97);
+      animation: showCard 0.8s ease forwards;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes showCard {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .small-text {
+      margin-bottom: 14px;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.55;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 8vw, 48px);
+      line-height: 1.08;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+    }
+
+    /* Контейнер с кнопками */
+    .buttons-area {
+      position: relative;
+      width: 290px;
+      height: 290px;
+      margin: 34px auto 0;
+    }
+
+    /* ДА */
+    .yes-button {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 118px;
+      height: 118px;
+      border: none;
+      border-radius: 50%;
+      background: #ff4f91;
+      color: white;
+      font-size: 27px;
+      font-weight: 800;
+      box-shadow:
+        0 14px 35px rgba(255, 79, 145, 0.28),
+        0 0 0 8px rgba(255, 79, 145, 0.08);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .yes-button:active {
+      transform: translate(-50%, -50%) scale(0.94);
+    }
+
+    /* НЕТ */
+    .no-button {
+      position: absolute;
+      width: 62px;
+      height: 42px;
+      border: 1px solid rgba(43, 27, 34, 0.1);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: rgba(43, 27, 34, 0.62);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(65, 25, 45, 0.06);
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.15s ease;
+    }
+
+    .no-button:active {
+      transform: scale(0.9);
+    }
+
+    /* Расстановка НЕТ вокруг ДА */
+    .no-1 {
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+    }
+
+    .no-2 {
+      right: 5px;
+      top: 62px;
+    }
+
+    .no-3 {
+      right: 5px;
+      bottom: 45px;
+    }
+
+    .no-4 {
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+    }
+
+    .no-5 {
+      left: 5px;
+      bottom: 45px;
+    }
+
+    .no-6 {
+      left: 5px;
+      top: 62px;
+    }
+
+    /* Сообщение после НЕТ */
+    .message {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(255, 247, 251, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease;
+    }
+
+    .message.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .message-box {
+      text-align: center;
+      transform: scale(0.88);
+      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    }
+
+    .message.show .message-box {
+      transform: scale(1);
+    }
+
+    .message-emoji {
+      font-size: 64px;
+      margin-bottom: 12px;
+    }
+
+    .message-title {
+      font-size: 45px;
+      line-height: 1;
+      font-weight: 850;
+      letter-spacing: -0.04em;
+    }
+
+    .message-subtitle {
+      margin-top: 12px;
+      font-size: 17px;
+      opacity: 0.55;
+    }
+
+    @media (max-width: 360px) {
+      .buttons-area {
+        transform: scale(0.9);
+        margin-top: 22px;
+      }
+
+      h1 {
+        font-size: 31px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <div class="background-glow"></div>
+
+    <!-- Сердечки -->
+    <div class="hearts" id="hearts"></div>
+
+    <!-- Основное приглашение -->
+    <section class="card">
+
+      <div class="small-text">
+        У меня к тебе вопрос...
+      </div>
+
+      <h1>
+        Пойдёшь<br />
+        гулять?
+      </h1>
+
+      <div class="buttons-area">
+
+        <button class="yes-button" id="yesButton">
+          ДА ❤️
+        </button>
+
+        <button class="no-button no-1">НЕТ</button>
+        <button class="no-button no-2">НЕТ</button>
+        <button class="no-button no-3">НЕТ</button>
+        <button class="no-button no-4">НЕТ</button>
+        <button class="no-button no-5">НЕТ</button>
+        <button class="no-button no-6">НЕТ</button>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Сообщение -->
+  <div class="message" id="message">
+
+    <div class="message-box">
+
+      <div class="message-emoji">
+        😭
+      </div>
+
+      <div class="message-title">
+        Ой всё
+      </div>
+
+      <div class="message-subtitle">
+        Я понял...
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    const heartsContainer = document.getElementById("hearts");
+    const message = document.getElementById("message");
+    const yesButton = document.getElementById("yesButton");
+
+    // Сердечки
+    const heartSymbols = ["❤️", "💕", "💗", "💖", "💓"];
+
+    function createHeart(delay = 0) {
+      const heart = document.createElement("div");
+
+      heart.className = "heart";
+      heart.textContent =
+        heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+
+      const left = Math.random() * 100;
+      const size = 16 + Math.random() * 22;
+      const duration = 3.5 + Math.random() * 3;
+
+      heart.style.left = `${left}%`;
+      heart.style.fontSize = `${size}px`;
+      heart.style.animationDuration = `${duration}s`;
+      heart.style.animationDelay = `${delay}s`;
+
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, (duration + delay) * 1000 + 500);
+    }
+
+    // Первая волна
+    for (let i = 0; i < 28; i++) {
+      createHeart(Math.random() * 1.8);
+    }
+
+    // Потом продолжаем слегка пускать сердечки
+    setInterval(() => {
+      createHeart();
+    }, 650);
+
+    // НЕТ
+    document.querySelectorAll(".no-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        message.classList.add("show");
+
+        // Дополнительные сердечки
+        for (let i = 0; i < 15; i++) {
+          setTimeout(() => createHeart(), i * 80);
+        }
+      });
+    });
+
+    // ДА
+    yesButton.addEventListener("click", () => {
+      message.classList.add("show");
+
+      document.querySelector(".message-emoji").textContent = "🥰";
+      document.querySelector(".message-title").textContent = "Ура!";
+      document.querySelector(".message-subtitle").textContent =
+        "Тогда прогулка состоится ❤️";
+
+      for (let i = 0; i < 35; i++) {
+        setTimeout(() => createHeart(), i * 60);
+      }
+    });
+  </script>
+
+</body>
+</html>
