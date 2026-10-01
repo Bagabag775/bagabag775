@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
@@ -24,6 +25,7 @@
     body {
       min-height: 100svh;
       overflow-x: hidden;
+
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -49,21 +51,24 @@
       font: inherit;
     }
 
-    /* =========================
+    /* =====================================================
        HEARTS
-    ========================= */
+    ===================================================== */
 
     .hearts {
       position: fixed;
       inset: 0;
+
       overflow: hidden;
       pointer-events: none;
+
       z-index: 1;
     }
 
     .heart {
       position: absolute;
       bottom: -70px;
+
       opacity: 0;
 
       animation-name: flyHeart;
@@ -111,9 +116,9 @@
       }
     }
 
-    /* =========================
+    /* =====================================================
        MAIN SCREEN
-    ========================= */
+    ===================================================== */
 
     .intro {
       position: relative;
@@ -130,10 +135,14 @@
 
     .intro-card {
       width: min(100%, 460px);
+
       text-align: center;
 
       opacity: 0;
-      transform: translateY(20px) scale(0.97);
+
+      transform:
+        translateY(20px)
+        scale(0.97);
 
       animation:
         introIn
@@ -147,7 +156,10 @@
     @keyframes introIn {
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+          translateY(0)
+          scale(1);
       }
     }
 
@@ -188,9 +200,9 @@
       letter-spacing: -0.05em;
     }
 
-    /* =========================
-       BUTTON AREA
-    ========================= */
+    /* =====================================================
+       QUESTION AREA
+    ===================================================== */
 
     .question-area {
       position: relative;
@@ -201,9 +213,9 @@
       margin: 26px auto 0;
     }
 
-    /* =========================
-       YES
-    ========================= */
+    /* =====================================================
+       YES BUTTON
+    ===================================================== */
 
     .yes-button {
       position: absolute;
@@ -248,9 +260,9 @@
         scale(0.93);
     }
 
-    /* =========================
-       NO BUTTONS
-    ========================= */
+    /* =====================================================
+       20 NO BUTTONS
+    ===================================================== */
 
     .no-button {
       position: absolute;
@@ -315,9 +327,9 @@
     .n19 { left: 7%; top: 8%; }
     .n20 { right: 7%; top: 8%; }
 
-    /* =========================
+    /* =====================================================
        FORM OVERLAY
-    ========================= */
+    ===================================================== */
 
     .overlay {
       position: fixed;
@@ -433,9 +445,9 @@
       opacity: 0.58;
     }
 
-    /* =========================
+    /* =====================================================
        DATE / TIME
-    ========================= */
+    ===================================================== */
 
     .field-group {
       margin-bottom: 17px;
@@ -493,9 +505,9 @@
       resize: vertical;
     }
 
-    /* =========================
+    /* =====================================================
        OPTIONS
-    ========================= */
+    ===================================================== */
 
     .options {
       display: grid;
@@ -563,6 +575,7 @@
 
     .option input:checked + .option-label {
       border-color: #ff4d90;
+
       background: #fff0f6;
 
       transform:
@@ -571,6 +584,7 @@
 
     .custom-option {
       display: none;
+
       margin-top: 13px;
     }
 
@@ -578,9 +592,9 @@
       display: block;
     }
 
-    /* =========================
+    /* =====================================================
        HUG
-    ========================= */
+    ===================================================== */
 
     .hug-card {
       margin-top: 24px;
@@ -623,9 +637,9 @@
       font-weight: 750;
     }
 
-    /* =========================
+    /* =====================================================
        BUTTONS
-    ========================= */
+    ===================================================== */
 
     .continue-button {
       width: 100%;
@@ -679,9 +693,9 @@
       cursor: pointer;
     }
 
-    /* =========================
-       NO MESSAGE
-    ========================= */
+    /* =====================================================
+       NO SCREEN
+    ===================================================== */
 
     .no-message {
       position: fixed;
@@ -704,7 +718,8 @@
       opacity: 0;
       visibility: hidden;
 
-      transition: opacity 0.3s ease;
+      transition:
+        opacity 0.3s ease;
     }
 
     .no-message.show {
@@ -713,12 +728,29 @@
     }
 
     .no-message-box {
+      width: 100%;
+      max-width: 350px;
+
       text-align: center;
     }
 
-    .no-emoji {
-      font-size: 70px;
-      margin-bottom: 13px;
+    /* ФОТО ПРИ НАЖАТИИ НЕТ */
+
+    .no-photo {
+      width: 150px;
+      height: 150px;
+
+      margin: 0 auto 16px;
+
+      display: block;
+
+      object-fit: cover;
+
+      border-radius: 22px;
+
+      box-shadow:
+        0 12px 35px
+        rgba(65, 25, 45, 0.12);
     }
 
     .no-title {
@@ -739,18 +771,34 @@
       opacity: 0.5;
     }
 
-    /* =========================
-       FINAL
-    ========================= */
+    /* =====================================================
+       FINAL SCREEN
+    ===================================================== */
 
     .final-card {
       width: 100%;
+
       text-align: center;
     }
 
-    .final-emoji {
-      font-size: 70px;
-      margin-bottom: 15px;
+    /* ФОТО / GIF В ФИНАЛЕ */
+
+    .final-photo {
+      width: 180px;
+      height: 180px;
+
+      margin:
+        0 auto 18px;
+
+      display: block;
+
+      object-fit: cover;
+
+      border-radius: 26px;
+
+      box-shadow:
+        0 14px 40px
+        rgba(65, 25, 45, 0.12);
     }
 
     .final-title {
@@ -774,6 +822,7 @@
       margin-top: 13px;
 
       font-size: 17px;
+
       line-height: 1.45;
 
       opacity: 0.6;
@@ -817,12 +866,13 @@
 
     .summary-value {
       font-size: 16px;
+
       font-weight: 750;
     }
 
-    /* =========================
+    /* =====================================================
        ERROR
-    ========================= */
+    ===================================================== */
 
     .error-text {
       display: none;
@@ -830,9 +880,11 @@
       margin-top: 12px;
 
       font-size: 14px;
+
       line-height: 1.4;
 
       color: #c52d62;
+
       font-weight: 650;
     }
 
@@ -840,7 +892,12 @@
       display: block;
     }
 
+    /* =====================================================
+       SMALL PHONES
+    ===================================================== */
+
     @media (max-width: 370px) {
+
       .question-area {
         transform: scale(0.88);
       }
@@ -848,15 +905,18 @@
       .option-label {
         min-height: 101px;
       }
+
     }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- =========================
+  <!-- =====================================================
        HEARTS
-  ========================== -->
+  ===================================================== -->
 
   <div
     class="hearts"
@@ -864,9 +924,9 @@
   ></div>
 
 
-  <!-- =========================
+  <!-- =====================================================
        MAIN SCREEN
-  ========================== -->
+  ===================================================== -->
 
   <main class="intro">
 
@@ -881,9 +941,10 @@
       </div>
 
       <h1 class="main-title">
-        Пойдёшь<br>
+        Пойдёшь<br />
         гулять?
       </h1>
+
 
       <div class="question-area">
 
@@ -894,7 +955,8 @@
           ДА ❤️
         </button>
 
-        <!-- 20 НЕТ -->
+
+        <!-- 20 КНОПОК НЕТ -->
 
         <button class="no-button n1">НЕТ</button>
         <button class="no-button n2">НЕТ</button>
@@ -918,13 +980,15 @@
         <button class="no-button n20">НЕТ</button>
 
       </div>
+
     </section>
+
   </main>
 
 
-  <!-- =========================
-       FORM
-  ========================== -->
+  <!-- =====================================================
+       FORM OVERLAY
+  ===================================================== -->
 
   <section
     class="overlay"
@@ -933,7 +997,10 @@
 
     <div class="overlay-content">
 
-      <!-- STEP 1 -->
+
+      <!-- =================================================
+           STEP 1
+      ================================================== -->
 
       <div
         class="step active"
@@ -944,13 +1011,16 @@
           Шаг 1 из 3
         </div>
 
+
         <h2 class="step-title">
           Когда тебе удобно?
         </h2>
 
+
         <p class="step-description">
           Конечно же в субботу ❤️
         </p>
+
 
         <div class="field-group">
 
@@ -967,6 +1037,7 @@
           />
 
         </div>
+
 
         <div class="field-group">
 
@@ -1012,6 +1083,7 @@
 
         </div>
 
+
         <button
           class="continue-button"
           id="step1Next"
@@ -1022,7 +1094,9 @@
       </div>
 
 
-      <!-- STEP 2 -->
+      <!-- =================================================
+           STEP 2
+      ================================================== -->
 
       <div
         class="step"
@@ -1033,15 +1107,21 @@
           Шаг 2 из 3
         </div>
 
+
         <h2 class="step-title">
           Что бы тебе хотелось?
         </h2>
+
 
         <p class="step-description">
           Выбирай, что тебе больше нравится ❤️
         </p>
 
+
         <div class="options">
+
+
+          <!-- КАФЕ -->
 
           <div class="option">
 
@@ -1056,14 +1136,21 @@
               class="option-label"
               for="cafe"
             >
-              <span class="option-icon">☕</span>
+
+              <span class="option-icon">
+                ☕
+              </span>
+
               <span class="option-text">
                 Кафе
               </span>
+
             </label>
 
           </div>
 
+
+          <!-- КВЕСТ -->
 
           <div class="option">
 
@@ -1078,14 +1165,21 @@
               class="option-label"
               for="quest"
             >
-              <span class="option-icon">🧩</span>
+
+              <span class="option-icon">
+                🧩
+              </span>
+
               <span class="option-text">
                 Квест
               </span>
+
             </label>
 
           </div>
 
+
+          <!-- ДРУЗЬЯ -->
 
           <div class="option">
 
@@ -1100,14 +1194,21 @@
               class="option-label"
               for="friends"
             >
-              <span class="option-icon">👥</span>
+
+              <span class="option-icon">
+                👥
+              </span>
+
               <span class="option-text">
                 Встреча с друзьями
               </span>
+
             </label>
 
           </div>
 
+
+          <!-- ПРОГУЛКА -->
 
           <div class="option">
 
@@ -1122,14 +1223,21 @@
               class="option-label"
               for="walk"
             >
-              <span class="option-icon">🚶</span>
+
+              <span class="option-icon">
+                🚶
+              </span>
+
               <span class="option-text">
                 Прогулка
               </span>
+
             </label>
 
           </div>
 
+
+          <!-- НА ТВОЁ УСМОТРЕНИЕ -->
 
           <div class="option">
 
@@ -1144,14 +1252,21 @@
               class="option-label"
               for="surprise"
             >
-              <span class="option-icon">✨</span>
+
+              <span class="option-icon">
+                ✨
+              </span>
+
               <span class="option-text">
                 На твоё усмотрение
               </span>
+
             </label>
 
           </div>
 
+
+          <!-- СВОЙ ВАРИАНТ -->
 
           <div class="option">
 
@@ -1166,10 +1281,15 @@
               class="option-label"
               for="custom"
             >
-              <span class="option-icon">✍️</span>
+
+              <span class="option-icon">
+                ✍️
+              </span>
+
               <span class="option-text">
                 Свой вариант
               </span>
+
             </label>
 
           </div>
@@ -1208,7 +1328,9 @@
       </div>
 
 
-      <!-- STEP 3 -->
+      <!-- =================================================
+           STEP 3
+      ================================================== -->
 
       <div
         class="step"
@@ -1219,9 +1341,11 @@
           Шаг 3 из 3
         </div>
 
+
         <h2 class="step-title">
           Дополнительные пожелания
         </h2>
+
 
         <p class="step-description">
           Тут есть одно очень важное пожелание...
@@ -1262,6 +1386,7 @@
           ← Назад
         </button>
 
+
         <div
           class="error-text"
           id="sendError"
@@ -1273,7 +1398,9 @@
       </div>
 
 
-      <!-- FINAL -->
+      <!-- =================================================
+           FINAL
+      ================================================== -->
 
       <div
         class="step"
@@ -1282,13 +1409,26 @@
 
         <div class="final-card">
 
-          <div class="final-emoji">
-            🥰
-          </div>
+
+          <!--
+            ЗДЕСЬ ПОТОМ ПОСТАВИШЬ
+            ССЫЛКУ НА СВОЮ КАРТИНКУ ИЛИ GIF
+
+            Например:
+            src="https://i.imgur.com/xxxxx.gif"
+          -->
+
+          <img
+            class="final-photo"
+            src="Снимок экрана 2026-10-01 150946.png"
+            alt="❤️"
+          />
+
 
           <h2 class="final-title">
             Ура!
           </h2>
+
 
           <p class="final-text">
             Тогда всё решено ❤️
@@ -1296,6 +1436,7 @@
 
 
           <div class="summary">
+
 
             <div class="summary-row">
 
@@ -1362,9 +1503,9 @@
   </section>
 
 
-  <!-- =========================
-       NO MESSAGE
-  ========================== -->
+  <!-- =====================================================
+       NO SCREEN
+  ===================================================== -->
 
   <section
     class="no-message"
@@ -1373,13 +1514,26 @@
 
     <div class="no-message-box">
 
-      <div class="no-emoji">
-        😭
-      </div>
+
+      <!--
+        ЗДЕСЬ ПОТОМ ПОСТАВИШЬ
+        ССЫЛКУ НА ФОТО
+
+        Например:
+        src="https://i.imgur.com/xxxxx.jpg"
+      -->
+
+      <img
+        class="no-photo"
+        src="ВСТАВЬ_ССЫЛКУ_НА_ФОТО_НЕТ"
+        alt="..."
+      />
+
 
       <div class="no-title">
         Ой всё
       </div>
+
 
       <div class="no-subtitle">
         Я понял...
@@ -1390,22 +1544,27 @@
   </section>
 
 
+  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->
+
   <script>
 
-    /* =================================
+    /* =====================================================
        FORMSPREE
-    ================================= */
+    ===================================================== */
 
     const FORMSPREE_ENDPOINT =
       "https://formspree.io/f/xvkgnpjv";
 
 
-    /* =================================
+    /* =====================================================
        HEARTS
-    ================================= */
+    ===================================================== */
 
     const hearts =
       document.getElementById("hearts");
+
 
     const heartSymbols = [
       "❤️",
@@ -1426,7 +1585,10 @@
       const heart =
         document.createElement("div");
 
-      heart.className = "heart";
+
+      heart.className =
+        "heart";
+
 
       heart.textContent =
         heartSymbols[
@@ -1436,41 +1598,59 @@
           )
         ];
 
+
       const left =
         Math.random() * 100;
+
 
       const size =
         (big ? 18 : 14) +
         Math.random() *
         (big ? 28 : 22);
 
+
       const duration =
         3.2 +
         Math.random() * 3.5;
 
+
       heart.style.left =
         `${left}%`;
+
 
       heart.style.fontSize =
         `${size}px`;
 
+
       heart.style.animationDuration =
         `${duration}s`;
+
 
       heart.style.animationDelay =
         `${delay}s`;
 
+
       hearts.appendChild(heart);
 
+
       setTimeout(() => {
+
         heart.remove();
+
       }, (duration + delay) * 1000 + 500);
+
     }
 
 
-    /* БОЛЬШАЯ ПЕРВАЯ ВОЛНА */
+    /* =====================================================
+       FIRST HEART WAVE
+    ===================================================== */
 
-    for (let i = 0; i < 130; i++) {
+    for (
+      let i = 0;
+      i < 130;
+      i++
+    ) {
 
       createHeart(
         Math.random() * 3,
@@ -1480,7 +1660,9 @@
     }
 
 
-    /* Постоянные сердечки */
+    /* =====================================================
+       CONTINUOUS HEARTS
+    ===================================================== */
 
     setInterval(() => {
 
@@ -1489,50 +1671,85 @@
     }, 220);
 
 
-    /* =================================
+    /* =====================================================
        ELEMENTS
-    ================================= */
+    ===================================================== */
 
     const yesButton =
-      document.getElementById("yesButton");
+      document.getElementById(
+        "yesButton"
+      );
+
 
     const noMessage =
-      document.getElementById("noMessage");
+      document.getElementById(
+        "noMessage"
+      );
+
 
     const formOverlay =
-      document.getElementById("formOverlay");
+      document.getElementById(
+        "formOverlay"
+      );
+
 
     const step1 =
-      document.getElementById("step1");
+      document.getElementById(
+        "step1"
+      );
+
 
     const step2 =
-      document.getElementById("step2");
+      document.getElementById(
+        "step2"
+      );
+
 
     const step3 =
-      document.getElementById("step3");
+      document.getElementById(
+        "step3"
+      );
+
 
     const finalStep =
-      document.getElementById("finalStep");
+      document.getElementById(
+        "finalStep"
+      );
+
 
     const dateInput =
-      document.getElementById("date");
+      document.getElementById(
+        "date"
+      );
+
 
     const hourInput =
-      document.getElementById("hour");
+      document.getElementById(
+        "hour"
+      );
+
 
     const hugs =
-      document.getElementById("hugs");
+      document.getElementById(
+        "hugs"
+      );
+
 
     const finishButton =
-      document.getElementById("finishButton");
+      document.getElementById(
+        "finishButton"
+      );
+
 
     const sendError =
-      document.getElementById("sendError");
+      document.getElementById(
+        "sendError"
+      );
 
 
-    /* =================================
-       НЕТ
-    ================================= */
+    /* =====================================================
+       NO
+    ===================================================== */
 
     document
       .querySelectorAll(".no-button")
@@ -1552,9 +1769,9 @@
       });
 
 
-    /* =================================
-       ДА
-    ================================= */
+    /* =====================================================
+       YES
+    ===================================================== */
 
     yesButton.addEventListener(
       "click",
@@ -1564,7 +1781,12 @@
           "show"
         );
 
-        for (let i = 0; i < 55; i++) {
+
+        for (
+          let i = 0;
+          i < 55;
+          i++
+        ) {
 
           setTimeout(() => {
 
@@ -1581,9 +1803,9 @@
     );
 
 
-    /* =================================
+    /* =====================================================
        STEP 1
-    ================================= */
+    ===================================================== */
 
     document
       .getElementById("step1Next")
@@ -1598,6 +1820,7 @@
             );
 
             return;
+
           }
 
 
@@ -1608,6 +1831,7 @@
             );
 
             return;
+
           }
 
 
@@ -1615,9 +1839,11 @@
             "active"
           );
 
+
           step2.classList.add(
             "active"
           );
+
 
           window.scrollTo(
             0,
@@ -1628,14 +1854,15 @@
       );
 
 
-    /* =================================
+    /* =====================================================
        STEP 2
-    ================================= */
+    ===================================================== */
 
     const customOption =
       document.getElementById(
         "customOption"
       );
+
 
     const customText =
       document.getElementById(
@@ -1695,6 +1922,7 @@
             );
 
             return;
+
           }
 
 
@@ -1709,6 +1937,7 @@
             );
 
             return;
+
           }
 
 
@@ -1716,9 +1945,11 @@
             "active"
           );
 
+
           step3.classList.add(
             "active"
           );
+
 
           window.scrollTo(
             0,
@@ -1739,6 +1970,7 @@
             "active"
           );
 
+
           step1.classList.add(
             "active"
           );
@@ -1747,9 +1979,9 @@
       );
 
 
-    /* =================================
+    /* =====================================================
        STEP 3
-    ================================= */
+    ===================================================== */
 
     hugs.addEventListener(
       "change",
@@ -1772,6 +2004,7 @@
             "active"
           );
 
+
           step2.classList.add(
             "active"
           );
@@ -1780,9 +2013,9 @@
       );
 
 
-    /* =================================
+    /* =====================================================
        SEND ANSWER
-    ================================= */
+    ===================================================== */
 
     finishButton.addEventListener(
       "click",
@@ -1833,17 +2066,22 @@
           );
 
 
-        /* Собираем данные */
+        /* =================================================
+           DATA
+        ================================================== */
 
         const answer = {
 
           name: "Соф",
 
-          date: formattedDate,
+          date:
+            formattedDate,
 
-          time: hourInput.value,
+          time:
+            hourInput.value,
 
-          walk: walkChoice,
+          walk:
+            walkChoice,
 
           extra:
             "Обнимашки 🤗"
@@ -1851,17 +2089,26 @@
         };
 
 
-        /* Блокируем кнопку */
+        /* =================================================
+           BUTTON STATE
+        ================================================== */
 
-        finishButton.disabled = true;
+        finishButton.disabled =
+          true;
+
 
         finishButton.textContent =
           "Отправляю... ❤️";
+
 
         sendError.classList.remove(
           "show"
         );
 
+
+        /* =================================================
+           SEND
+        ================================================== */
 
         try {
 
@@ -1869,32 +2116,41 @@
             await fetch(
               FORMSPREE_ENDPOINT,
               {
-                method: "POST",
+
+                method:
+                  "POST",
 
                 headers: {
+
                   "Content-Type":
                     "application/json",
 
                   "Accept":
                     "application/json"
+
                 },
 
                 body:
                   JSON.stringify(
                     answer
                   )
+
               }
             );
 
 
           if (!response.ok) {
+
             throw new Error(
               "Send failed"
             );
+
           }
 
 
-          /* Показываем финал */
+          /* ===============================================
+             SHOW FINAL
+          =============================================== */
 
           document.getElementById(
             "summaryDate"
@@ -1918,9 +2174,11 @@
             "active"
           );
 
+
           finalStep.classList.add(
             "active"
           );
+
 
           window.scrollTo(
             0,
@@ -1928,7 +2186,9 @@
           );
 
 
-          /* Финальный салют ❤️ */
+          /* ===============================================
+             FINAL HEART EXPLOSION
+          =============================================== */
 
           for (
             let i = 0;
@@ -1947,14 +2207,22 @@
 
           }
 
+
         } catch (error) {
+
+          console.error(
+            error
+          );
+
 
           sendError.classList.add(
             "show"
           );
 
+
           finishButton.disabled =
             false;
+
 
           finishButton.textContent =
             "Попробовать ещё раз ❤️";
